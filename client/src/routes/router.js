@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router';
 import TheHome from '../pages/TheHome.vue';
 import TheActors from '../pages/TheActors.vue';
+import TheGenders from '../pages/TheGenders.vue';
 import TheNotFound from '../pages/TheNotFound.vue';
 
 const Router = new VueRouter({
@@ -14,6 +15,11 @@ const Router = new VueRouter({
             path: '/actors',
             name: 'actors',
             component: TheActors
+        },
+        {
+            path: '/genders',
+            name: "genders",
+            component: TheGenders
         },
         {
             path: '*',

@@ -99,33 +99,33 @@
 export default {
   props: {
     isUpdate: { type: Boolean },
-    updateData: { type: Object, required: true }
+    updateData: { type: Object }
   },
   data() {
     return {
       actorModel: {}
     };
   },
-  mounted() {
-    this.$_getActors();
-  },
+  mounted() {},
   methods: {
-    $_getActors() {},
     $_editActor() {
       if (this.isUpdate) {
         this.$emit("updateActor", this.actorModel);
       } else {
         this.$emit("addActor", this.actorModel);
       }
+      this.$_clearTemplate();
+    },
+    $_clearTemplate() {
+      this.actorModel = {};
     }
   },
   watch: {
     isUpdate: function() {
       if (this.isUpdate) {
-        const update = this.updateData;
-        this.actorModel = update;
+        this.actorModel = this.updateData;
       } else {
-        this.actorModel = {};
+        this.$_clearTemplate();
       }
     }
   }

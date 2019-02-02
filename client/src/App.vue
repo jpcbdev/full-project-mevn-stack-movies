@@ -9,6 +9,9 @@
           <li class="level-item">
             <router-link to="/actors" class="button is-normal is-info is-outlined">Actors</router-link>
           </li>
+          <li class="level-item">
+            <router-link to="/genders" class="button is-normal is-info is-outlined">Genders</router-link>
+          </li>
         </ul>
       </div>
     </nav>
@@ -31,6 +34,10 @@ export default {
 </script>
 
 <style scoped>
+header {
+  height: 100%;
+  width: 100%;
+}
 .section {
   padding-top: 0;
 }

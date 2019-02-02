@@ -1,26 +1,26 @@
 <template>
   <div class="level" data-aos="fade-up">
     <div class="container">
-        <div class="level-item">
-          <h1 class="title is-1 has-text-centered">Muviteca</h1>
-        </div>
-        <div class="level-item">
-          <span class="subtitle is-3 has-text-centered">Tu biblioteca de películas</span>
-        </div>
+      <div class="level-item">
+        <h1 class="title is-1 has-text-centered">Muviteca</h1>
+      </div>
+      <div class="level-item">
+        <span class="subtitle is-3 has-text-centered">Tu biblioteca de películas</span>
+      </div>
 
-        <!-- Movie slider here -->
-        <div class="level-item">
-          <div class="siema">
-            <img
-              src="https://ewedit.files.wordpress.com/2016/08/stranger-things_0.jpg?w=450"
-              alt="Placeholder image"
-            >
-            <img
-              src="https://netloid.com/wp-content/uploads/2014/12/netloid_hilarious-bad-reviews-on-the-covers-of-recent-movies.jpg"
-              alt="Placeholder image"
-            >
-          </div>
+      <!-- Movie slider here -->
+      <div class="level-item is-hidden-mobile">
+        <div class="siema">
+          <img
+            src="https://ewedit.files.wordpress.com/2016/08/stranger-things_0.jpg?w=450"
+            alt="Placeholder image"
+          >
+          <img
+            src="https://netloid.com/wp-content/uploads/2014/12/netloid_hilarious-bad-reviews-on-the-covers-of-recent-movies.jpg"
+            alt="Placeholder image"
+          >
         </div>
+      </div>
     </div>
   </div>
 </template>

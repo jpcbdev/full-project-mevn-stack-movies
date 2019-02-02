@@ -30,7 +30,6 @@ controller.addActor = async (req, res) => {
     const body = req.body;
     const actor = new actorModel(body);
     await actor.save().then(() => {
-
         res.status(200).json({
             status: 200
         }).end();
