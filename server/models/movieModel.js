@@ -35,17 +35,15 @@ let movieSchema = new mongoose.Schema({
         required: true
     },
     director: {
-        type: {
-            directorSchema
-        },
+        type: directorSchema,
         required: true
     },
     writers: {
         type: [writerSchema],
-        required: true,
+        required: true
     },
     year: {
-        type: Date,
+        type: Number,
         required: true,
     },
     cover: {
@@ -54,6 +52,13 @@ let movieSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('movie', movieSchema);
+const movieModel = mongoose.model('movie', movieSchema);
+module.exports = {
+    movieModel,
+    movieSchema
+}
+
 
 // La propiedad unique de validacion me dio errores por duplicacion de datos
+
+// Los esquemas de objetos no es necesario encerrarlos en {} ya que un esquema es un objeto

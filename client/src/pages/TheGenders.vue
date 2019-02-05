@@ -1,9 +1,8 @@
 <template>
   <div class="level" data-aos="fade-up">
-    <h1 class="title is-2">Géneros</h1>
     <div class="columns has-text-centered">
       <div class="column">
-        <h3 class="subtitle is-4">Lista de géneros</h3>
+        <h1 class="title is-2 has-text-centered">Géneros</h1>
         <div class="level">
           <div class="level-item" v-for="gender in genders" :key="gender._id">
             <p>{{gender.name}}</p>
@@ -81,9 +80,9 @@ export default {
       services.addGender(gender).then(res => {
         if (res.status === 200) {
           this.$_getGenders();
-          alert("Genero agregado con exito");
+          this.$_showToast("Género agregado correctamente");
         } else {
-          alert("Error al registrar el genero");
+          this.$_showToast("Error al registrar el genero");
         }
       });
       this.$_clearTemplate();
@@ -96,9 +95,9 @@ export default {
       services.updateGender(id, gender).then(res => {
         if (res.status === 200) {
           this.$_getGenders();
-          alert("Genero actualizado correctamente");
+          this.$_showToast("Genero actualizado correctamente");
         } else {
-          alert("Error al actualizar el genero");
+          this.$_showToast("Error al actualizar el genero");
         }
         this.$_clearTemplate();
       });
@@ -108,11 +107,14 @@ export default {
         if (res.status === 200) {
           this.$_clearTemplate();
           this.$_getGenders();
-          alert("Genero eliminado correctamente");
+          this.$_showToast("Genero eliminado correctamente");
         } else {
-          alert("Error al eliminar el genero");
+          this.$_showToast("Error al eliminar el genero");
         }
       });
+    },
+    $_showToast(msg) {
+      this.$toasted.show(msg);
     },
     $_clearTemplate() {
       this.genderInfo = null;

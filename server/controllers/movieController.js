@@ -1,34 +1,40 @@
-const movieModel = require('../models/movieModel.js');
+const {
+    movieModel
+} = require('../models/movieModel.js');
 const controller = {};
 
 controller.getMovies = async (req, res) => {
-    await movieModel.find({}, (error, movies) => {
-        if (error) {
-            console.log(error)
-        } else {
-            res.json(movies);
-        }
+    await movieModel.find({}, (error, result) => {
+        if (error) res.status(404).end();
+        else res.status(200).json(result).end();
     })
 };
 controller.getMovieById = async (req, res) => {
     const id = req.params.id;
     await movieModel.findById({
         _id: id
-    }, (error, movie) => {
-        if (error) {
-            res.json(error)
-        } else(res.json(movie));
+    }, (error, result) => {
+        if (error) res.status(404).end();
+        else res.json(result).end();
     })
 }
 controller.addMovie = async (req, res) => {
 
     const body = req.body;
-    let Movie = new movieModel(body)
-    await Movie.save().then((movies) => {
-        res.json(movies)
-    }).catch((error) => {
-        res.json(error);
-    });
+    console.log(body);
+
+    
+    const movie = new movieModel(body);
+
+    await movie.save().then(() => {
+        res.json({
+            status: 200
+        }).end();
+    }).catch(error => {
+        res.json({
+            status: 400
+        }).end();
+    })
 }
 controller.updateMovie = async (req, res) => {
 
@@ -41,11 +47,14 @@ controller.updateMovie = async (req, res) => {
         body, {
             new: true
         },
-        (error, movie) => {
+        (error, result) => {
             if (error) {
-                res.json(error)
+                res.status(404).end();
+
             } else {
-                res.json(movie)
+                res.status(200).json({
+                    status: 200
+                }).end();
             }
         })
 
@@ -55,11 +64,14 @@ controller.deleteMovie = async (req, res) => {
     const id = req.params.id;
     await movieModel.findByIdAndDelete({
         _id: id
-    }, (error, movie) => {
+    }, (error, result) => {
         if (error) {
-            res.json(error)
+            res.status(404).end();
+
         } else {
-            res.json(movie)
+            res.status(200).json({
+                status: 200
+            }).end();
         }
     });
 

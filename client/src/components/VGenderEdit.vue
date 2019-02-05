@@ -53,6 +53,7 @@
 </template>
 
 <script>
+
 export default {
   props: {
     isUpdate: {
@@ -79,6 +80,7 @@ export default {
     $_clearTemplate() {
       this.genderModel = {};
     }
+    
   },
   watch: {
     isUpdate: function() {

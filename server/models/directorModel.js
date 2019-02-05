@@ -1,25 +1,22 @@
 const mongoose = require('mongoose');
 
 const directorSchema = new mongoose.Schema({
-    dni: {
-        type: String,
-        required: true,
-    },
     firstName: {
         type: String,
         required: true
     },
-    firsSurname: {
+    firstSurname: {
         type: String,
-        require: true
-    },
-    birthdate: {
-        type: Date,
         required: true
     },
     email: {
         type: String,
-        default: "empty"
+        required: false
+    },
+    photo: {
+        type: String,
+        required: false,
+        default: 'https://wingslax.com/wp-content/uploads/2017/12/no-image-available.png'
     }
 });
 const directorModel = mongoose.model('director', directorSchema);

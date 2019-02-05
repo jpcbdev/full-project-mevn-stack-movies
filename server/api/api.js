@@ -12,6 +12,18 @@ Router
     .post('/genders', require('../controllers/genderController').addGender)
     .put('/genders/:id', require('../controllers/genderController').updateGender)
     .delete('/genders/:id', require('../controllers/genderController').deleteGender)
+    // Directors
+    .get('/directors', require('../controllers/directorController').getDirectors)
+    .get('/directors/:id', require('../controllers/directorController').getDirectorById)
+    .post('/directors', require('../controllers/directorController').addDirector)
+    .put('/directors/:id', require('../controllers/directorController').updateDirector)
+    .delete('/directors/:id', require('../controllers/directorController').deleteDirector)
+    // Writers
+    .get('/writers', require('../controllers/writerController').getWriters)
+    .get('/writers/:id', require('../controllers/writerController').getWriterById)
+    .post('/writers', require('../controllers/writerController').addWriter)
+    .put('/writers/:id', require('../controllers/writerController').updateWriter)
+    .delete('/writers/:id', require('../controllers/writerController').deleteWriter)
     // Movies
     .get('/movies', require('../controllers/movieController.js').getMovies)
     .get('/movies/:id', require('../controllers/movieController.js').getMovieById)

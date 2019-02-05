@@ -3,39 +3,21 @@
     <div class="columns" data-aos="fade-up">
       <!-- Buscar actor -->
       <div class="column">
+        <h1 class="title is-2 has-text-centered">Actores</h1>
         <div class="level">
-          <div class="level-item">
-            <p class="subtitle is-5">Buscar actor</p>
-          </div>
-          <div class="level-item">
-            <div class="field has-addons">
-              <p class="control">
-                <input
-                  class="input"
-                  type="text"
-                  placeholder="Nombre del actor"
-                  v-on:keyup="$_typingName"
-                  v-model="searchText"
-                >
-              </p>
+          <div class="level-item actors__container">
+            <div
+              class="has-text-centered"
+              v-for="actor in actors"
+              :key="actor._id"
+              data-aos="fade-up"
+            >
+              <img :src="actor.photo" :alt="actor.firstName" class="image is-96x96">
+              <p>{{actor.firstName}}</p>
+              <p>{{actor.firstSurname}}</p>
+              <button class="button is-primary" @click="$_actorInfo(actor)">Info</button>
             </div>
           </div>
-
-          <template v-if="foundActors">
-            <div class="level-item">
-              <div
-                class="has-text-centered"
-                v-for="actor in foundActors"
-                :key="actor._id"
-                data-aos="fade-up"
-              >
-                <img :src="actor.photo" :alt="actor.firstName" class="image is-96x96">
-                <p>{{actor.firstName}}</p>
-                <p>{{actor.firstSurname}}</p>
-                <button class="button is-primary" @click="$_actorInfo(actor)">Info</button>
-              </div>
-            </div>
-          </template>
         </div>
       </div>
       <!-- Actor info -->
@@ -95,7 +77,6 @@ export default {
     this.$_getActors();
   },
   methods: {
-    // Emited by child component
     $_getActors() {
       services.getActors().then(res => {
         if (res) this.actors = res;
@@ -111,7 +92,6 @@ export default {
           }
         });
       } else {
-        // this.$_clearTemplate();
         this.foundActors = [];
         this.actorInfo = null;
       }
@@ -133,9 +113,9 @@ export default {
       services.addActor(actor).then(res => {
         if (res.status === 200) {
           this.$_getActors();
-          alert("Actor agregado con exito");
+          this.$_showToast("Actor agregado con exito");
         } else {
-          alert("Error al registrar el actor");
+          this.$_showToast("Error al registrar el actor");
         }
       });
       this.$_clearTemplate();
@@ -149,10 +129,10 @@ export default {
       services.updateActor(id, update).then(res => {
         if (res.status === 200) {
           this.$_getActors();
-          alert("Actor modificado con exito");
+          this.$_showToast("Actor modificado con exito");
           this.isUpdate = false;
         } else {
-          alert("Error al actualizar el actor");
+          this.$_showToast("Error al actualizar el actor");
         }
       });
       this.$_clearTemplate();
@@ -161,10 +141,15 @@ export default {
       services.deleteActor(id).then(res => {
         if (res.status === 200) {
           this.$_getActors();
-          alert("Actor eliminado correctamente");
+          this.$_showToast("Actor eliminado correctamente");
+        } else {
+          this.$_showToast("Error al eliminar el actor");
         }
         this.$_clearTemplate();
       });
+    },
+    $_showToast(msg) {
+      this.$toasted.show(msg);
     },
     $_clearTemplate() {
       this.searchText = "";
@@ -196,6 +181,11 @@ export default {
 .info--img {
   width: 20em;
   height: 20em;
+}
+
+.actors__container {
+  display: flex;
+  flex-wrap: wrap;
 }
 .button {
   margin: 0.2em;

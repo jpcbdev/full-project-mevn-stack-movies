@@ -29,6 +29,7 @@ controller.getActorById = async (req, res) => {
 controller.addActor = async (req, res) => {
     const body = req.body;
     const actor = new actorModel(body);
+
     await actor.save().then(() => {
         res.status(200).json({
             status: 200
@@ -66,8 +67,6 @@ controller.deleteActor = async (req, res) => {
     };
     await actorModel.findByIdAndRemove(cond, (error, result) => {
         if (error) {
-            // (error || result === null)
-            console.log(error);
             res.status(404).end();
 
         } else {

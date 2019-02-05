@@ -57,13 +57,13 @@ describe("/PUT genders", () => {
     });
 });
 
-describe("/DELETE genders", () => {
-    it("should delete a gender by id", (done) => {
-        chai.request(server)
-            .delete("/genders/5c548937fdc1c124c90c9f02")
-            .end((error, res) => {
-                expect(res).to.have.status(200);
-            })
-        done();
-    })
-})
+// describe("/DELETE genders", () => {
+//     it("should delete a gender by id", (done) => {
+//         chai.request(server)
+//             .delete("/genders/5c548937fdc1c124c90c9f02")
+//             .end((error, res) => {
+//                 expect(res).to.have.status(200);
+//             })
+//         done();
+//     })
+// })

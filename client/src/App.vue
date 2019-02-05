@@ -12,6 +12,15 @@
           <li class="level-item">
             <router-link to="/genders" class="button is-normal is-info is-outlined">Genders</router-link>
           </li>
+          <li class="level-item">
+            <router-link to="/directors" class="button is-normal is-info is-outlined">Directors</router-link>
+          </li>
+          <li class="level-item">
+            <router-link to="/writers" class="button is-normal is-info is-outlined">Writers</router-link>
+          </li>
+          <li class="level-item">
+            <router-link to="/movies" class="button is-normal is-info is-outlined">Movies</router-link>
+          </li>
         </ul>
       </div>
     </nav>
